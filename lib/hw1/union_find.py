@@ -27,6 +27,8 @@ class UF(object):
         for x in range(N):
             self.id.append(x)
 
+        return id
+
     def qf_union(self, p, q):
         """Union operation for Quick-Find Algorithm.
 
@@ -35,7 +37,12 @@ class UF(object):
         (linear number of array accesses)
 
         """
+        pid = self.id[p]
+        qid = self.id[q]
 
+        for x in range(len(self.id)):
+                if self.id[x] == pid:
+                    self.id[x] = qid
 
         return 1
 
@@ -46,9 +53,10 @@ class UF(object):
 
         """
 
-        return True
-        #return self.id[p] == self.id[q]
-
+        if self.id[p] == self.id[q]:
+            return True
+        else:
+            return False
 
 
     def qu_union(self, p, q):
@@ -56,8 +64,6 @@ class UF(object):
          connect p and q.
 
          """
-        pid = self.id[p]
-        qid = self.id[q]
 
 
         return 1
