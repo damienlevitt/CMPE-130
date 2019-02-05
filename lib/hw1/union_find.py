@@ -14,11 +14,13 @@ class UF(object):
     """Union Find class
 
     """
-    id = []
-
     def __init__(self):
         self.id = []
 
+    def get_root(self, i):
+        while i != self.id[i]:
+            i = self.id[i]
+        return i
 
     def qf_init(self, N):
         """initialize the data structure
@@ -44,8 +46,6 @@ class UF(object):
                 if self.id[x] == pid:
                     self.id[x] = qid
 
-        return 1
-
 
     def qf_connected(self, p, q):
         """Find operation for Quick-Find Algorithm.
@@ -53,10 +53,8 @@ class UF(object):
 
         """
 
-        if self.id[p] == self.id[q]:
-            return True
-        else:
-            return False
+        return self.id[p] == self.id[q]
+
 
 
     def qu_union(self, p, q):
@@ -64,7 +62,8 @@ class UF(object):
          connect p and q.
 
          """
-
+        root_p = self.get_root(p)
+        self.id[root_p] = self.get_root(q)
 
         return 1
 
