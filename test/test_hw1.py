@@ -5,8 +5,7 @@ class Test_UF(object):
     @classmethod
     def setup_class(klass):
         """This method is run once for each class before any tests are run"""
-        print ("\n#####  Start Function Tests   #####\n")
-
+        print("\n#####  Start Function Tests   #####\n")
 
     def test_one(self):
         pass
@@ -74,7 +73,6 @@ class Test_UF(object):
 
         assert expected == actual
 
-
     def test_wqu_not_connected(self):
 
         # initialize network nodes
@@ -103,7 +101,6 @@ class Test_UF(object):
         expected = True
 
         assert expected == actual
-
 
     def test_pqu_not_connected(self):
 
