@@ -17,11 +17,6 @@ class UF(object):
     def __init__(self):
         self.id = []
 
-    def get_root(self, i):
-        while i != self.id[i]:
-            i = self.id[i]
-        return i
-
     def qf_init(self, N):
         """initialize the data structure
 
@@ -46,15 +41,16 @@ class UF(object):
                 if self.id[x] == pid:
                     self.id[x] = qid
 
-
     def qf_connected(self, p, q):
         """Find operation for Quick-Find Algorithm.
         simply test whether p and q are connected
-
         """
         return self.id[p] == self.id[q]
 
-
+    def get_root(self, i):
+        while i != self.id[i]:
+            i = self.id[i]
+        return i
 
     def qu_union(self, p, q):
         """Union operation for Quick-Union Algorithm.
@@ -64,14 +60,12 @@ class UF(object):
         root_p = self.get_root(p)
         self.id[root_p] = self.get_root(q)
 
-
     def qu_connected(self, p, q):
         """Find operation for Quick-Union Algorithm.
          test whether p and q are connected
 
          """
         return self.get_root(p) == self.get_root(q)
-
 
     def wqu_union(self, p, q):
         """Union operation for Weighted Quick-Union Algorithm.
@@ -81,7 +75,6 @@ class UF(object):
 
         return 1
 
-
     def wqu_connected(self, p, q):
         """Find operation for Weighted Quick-Union Algorithm.
          test whether p and q are connected
@@ -90,7 +83,6 @@ class UF(object):
 
         return True
 
-
     def pqu_union(self, p, q):
         """Union operation for path compressed Quick-Union Algorithm.
          connect p and q.
@@ -98,7 +90,6 @@ class UF(object):
          """
 
         return 1
-
 
     def pqu_connected(self, p, q):
         """Find operation for path compressed Quick-Union Algorithm.
@@ -115,7 +106,6 @@ class UF(object):
          """
 
         return 1
-
 
     def wpqu_connected(self, p, q):
         """Find operation for Weighted path compressed Quick-Union Algorithm.
