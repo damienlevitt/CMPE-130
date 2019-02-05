@@ -14,6 +14,7 @@ class UF(object):
     """Union Find class
 
     """
+    id = []
 
     def __init__(self):
         self.id = []
@@ -55,6 +56,9 @@ class UF(object):
          connect p and q.
 
          """
+        pid = self.id[p]
+        qid = self.id[q]
+
 
         return 1
 
