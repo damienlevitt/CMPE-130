@@ -24,8 +24,6 @@ class UF(object):
         for x in range(N):
             self.id.append(x)
 
-        return id
-
     def qf_union(self, p, q):
         """Union operation for Quick-Find Algorithm.
 
@@ -47,6 +45,9 @@ class UF(object):
         """
         return self.id[p] == self.id[q]
 
+    def qu_init(self, N):
+        self.id = range(N)
+
     def get_root(self, i):
         while i != self.id[i]:
             i = self.id[i]
@@ -67,21 +68,28 @@ class UF(object):
          """
         return self.get_root(p) == self.get_root(q)
 
+    def wqu_init(self, N):
+        self.id = range(N)
+        self.size = [1] * N
+
     def wqu_union(self, p, q):
         """Union operation for Weighted Quick-Union Algorithm.
          connect p and q.
 
          """
-
-        return 1
+        if self.size[self.get_root(p)] < self.size[self.get_root(q)]:
+            self.id[self.get_root(p)] = self.get_root(q)
+            self.size[self.get_root(q)] += self.size[self.get_root(p)]
+        else:
+            self.id[self.get_root(q)] = self.get_root(p)
+            self.size[self.get_root(p)] += self.size[self.get_root(q)]
 
     def wqu_connected(self, p, q):
         """Find operation for Weighted Quick-Union Algorithm.
          test whether p and q are connected
 
          """
-
-        return True
+        return self.get_root(p) == self.get_root(q)
 
     def pqu_union(self, p, q):
         """Union operation for path compressed Quick-Union Algorithm.
