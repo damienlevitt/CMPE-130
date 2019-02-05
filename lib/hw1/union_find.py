@@ -52,7 +52,6 @@ class UF(object):
         simply test whether p and q are connected
 
         """
-
         return self.id[p] == self.id[q]
 
 
@@ -65,16 +64,13 @@ class UF(object):
         root_p = self.get_root(p)
         self.id[root_p] = self.get_root(q)
 
-        return 1
-
 
     def qu_connected(self, p, q):
         """Find operation for Quick-Union Algorithm.
          test whether p and q are connected
 
          """
-
-        return True
+        return self.get_root(p) == self.get_root(q)
 
 
     def wqu_union(self, p, q):
