@@ -70,19 +70,18 @@ class UF(object):
 
     def wqu_init(self, N):
         self.id = range(N)
-        self.size = [1] * N
 
     def wqu_union(self, p, q):
         """Union operation for Weighted Quick-Union Algorithm.
          connect p and q.
 
          """
-        if self.size[self.get_root(p)] < self.size[self.get_root(q)]:
+        if self.id[self.get_root(p)] < self.id[self.get_root(q)]:
             self.id[self.get_root(p)] = self.get_root(q)
-            self.size[self.get_root(q)] += self.size[self.get_root(p)]
+            self.id[self.get_root(q)] += self.id[self.get_root(p)]
         else:
             self.id[self.get_root(q)] = self.get_root(p)
-            self.size[self.get_root(p)] += self.size[self.get_root(q)]
+            self.id[self.get_root(p)] += self.id[self.get_root(q)]
 
     def wqu_connected(self, p, q):
         """Find operation for Weighted Quick-Union Algorithm.
@@ -91,23 +90,13 @@ class UF(object):
          """
         return self.get_root(p) == self.get_root(q)
 
-    def get_root_pqu(self, N):
-        touched = set([])
-        while N != self.id[N]:
-            touched.add(N)
-            N = self.id[N]
-            root = N
-        for y in touched:
-            self.id[y] = root
-        return root
-
     def pqu_union(self, p, q):
         """Union operation for path compressed Quick-Union Algorithm.
          connect p and q.
 
          """
-        root_of_p = self.get_root_pqu(p)
-        self.id[root_of_p] = self.get_root_pqu(q)
+        root_of_p = self.get_root(p)
+        self.id[root_of_p] = self.get_root(q)
 
     def pqu_connected(self, p, q):
         """Find operation for path compressed Quick-Union Algorithm.
@@ -115,7 +104,7 @@ class UF(object):
 
          """
 
-        return self.get_root_pqu(p) == self.get_root_pqu(q)
+        return self.get_root(p) == self.get_root(q)
 
     def wpqu_union(self, p, q):
         """Union operation for Weighted path compressed Quick-Union Algorithm.
@@ -123,12 +112,12 @@ class UF(object):
 
          """
 
-        if self.size[self.get_root_pqu(p)] < self.size[self.get_root_pqu(q)]:
-            self.id[self.get_root_pqu(p)] = self.get_root_pqu(q)
-            self.size[self.get_root_pqu(q)] += self.size[self.get_root_pqu(p)]
+        if self.id[self.get_root(p)] < self.id[self.get_root(q)]:
+            self.id[self.get_root(p)] = self.get_root(q)
+            self.id[self.get_root(q)] += self.id[self.get_root(p)]
         else:
-            self.id[self.get_root_pqu(q)] = self.get_root_pqu(p)
-            self.size[self.get_root_pqu(p)] += self.size[self.get_root_pqu(q)]
+            self.id[self.get_root(q)] = self.get_root(p)
+            self.id[self.get_root(p)] += self.id[self.get_root(q)]
 
     def wpqu_connected(self, p, q):
         """Find operation for Weighted path compressed Quick-Union Algorithm.
@@ -136,7 +125,7 @@ class UF(object):
 
          """
 
-        return True
+        return self.get_root(p) == self.get_root(q)
 
 if __name__ == "__main__":
 
@@ -167,7 +156,6 @@ if __name__ == "__main__":
         print(total_time)
 
     # this plots things in log scale (pls google it), you need to add matplotlib to your virtualenv first!
-
 
     # plt.plot(set_szs, timing)
     # plt.xscale('log')
