@@ -133,7 +133,11 @@ if __name__ == "__main__":
 
     # iteration
     set_szs = [10]
-    timing = []
+    timing_qf = []
+    timing_qu = []
+    timing_wqu = []
+    timing_pqu = []
+    timing_wpqu = []
 
     # gives the timing for union operation only, you might want to do this for all functions you wrote.
 
@@ -146,19 +150,18 @@ if __name__ == "__main__":
         for idx in range(set_sz - 1):
             rp = random.randint(0, set_sz - 1)
             rq = random.randint(0, set_sz - 1)
-
             inodes.qf_union(rp, rq)
-
         t1 = time.time()
-
         total_time = t1 - t0
-
-        timing.append(total_time)
-
+        timing_qf.append(total_time)
         print(total_time)
 
     # this plots things in log scale (pls google it), you need to add matplotlib to your virtualenv first!
-    plt.plot(set_szs, timing)
+    plt.plot(set_szs, timing_qf)
+    #plt.plot(set_szs, timing_qu)
+    #plt.plot(set_szs, timing_wqu)
+    #plt.plot(set_szs, timing_pqu)
+    #plt.plot(set_szs, timing_wpqu)
     plt.xscale('log')
     plt.yscale('log')
     plt.title('log')
