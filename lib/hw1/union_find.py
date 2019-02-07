@@ -8,7 +8,8 @@
 
 import time
 import random
-#import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
+
 
 class UF(object):
     """Union Find class
@@ -36,17 +37,14 @@ class UF(object):
         qid = self.id[q]
 
         for x in range(len(self.id)):
-                if self.id[x] == pid:
-                    self.id[x] = qid
+                if self.id[x] == pid:           # if the id at x is equal to the id at p then x and p are connected
+                    self.id[x] = qid            # there for you can set x to q
 
     def qf_connected(self, p, q):
         """Find operation for Quick-Find Algorithm.
         simply test whether p and q are connected
         """
         return self.id[p] == self.id[q]
-
-    def qu_init(self, N):
-        self.id = range(N)
 
     def get_root(self, i):
         while i != self.id[i]:
@@ -67,9 +65,6 @@ class UF(object):
 
          """
         return self.get_root(p) == self.get_root(q)
-
-    def wqu_init(self, N):
-        self.id = range(N)
 
     def wqu_union(self, p, q):
         """Union operation for Weighted Quick-Union Algorithm.
@@ -127,6 +122,7 @@ class UF(object):
 
         return self.get_root(p) == self.get_root(q)
 
+
 if __name__ == "__main__":
 
     # iteration
@@ -134,6 +130,7 @@ if __name__ == "__main__":
     timing = []
 
     # gives the timing for union operation only, you might want to do this for all functions you wrote.
+
     for set_sz in set_szs:
         # initialize network nodes
         inodes = UF()
@@ -156,10 +153,9 @@ if __name__ == "__main__":
         print(total_time)
 
     # this plots things in log scale (pls google it), you need to add matplotlib to your virtualenv first!
-
-    # plt.plot(set_szs, timing)
-    # plt.xscale('log')
-    # plt.yscale('log')
-    # plt.title('log')
-    # plt.ylabel('some numbers')
-    # plt.show()
+    plt.plot(set_szs, timing)
+    plt.xscale('log')
+    plt.yscale('log')
+    plt.title('log')
+    plt.ylabel('some numbers')
+    plt.show()
