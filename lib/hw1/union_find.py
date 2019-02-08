@@ -17,11 +17,13 @@ class UF(object):
     """
     def __init__(self):
         self.id = []
+        self.sz = []
 
     def qf_init(self, N):
         """initialize the data structure
 
         """
+        self.sz = [1] * N
         for x in range(N):
             self.id.append(x)
 
@@ -73,12 +75,12 @@ class UF(object):
          """
         if self.get_root(p) == self.get_root(q):
             return
-        if self.id[self.get_root(p)] < self.id[self.get_root(q)]:
+        if self.sz[self.get_root(p)] < self.sz[self.get_root(q)]:
             self.id[self.get_root(p)] = self.get_root(q)
-            self.id[self.get_root(q)] += self.id[self.get_root(p)]
+            self.sz[self.get_root(q)] += self.sz[self.get_root(p)]
         else:
             self.id[self.get_root(q)] = self.get_root(p)
-            self.id[self.get_root(p)] += self.id[self.get_root(q)]
+            self.sz[self.get_root(p)] += self.sz[self.get_root(q)]
 
     def wqu_connected(self, p, q):
         """Find operation for Weighted Quick-Union Algorithm.
@@ -116,12 +118,12 @@ class UF(object):
          """
         if self.get_root_pqu(p) == self.get_root_pqu(q):
             return
-        if self.id[self.get_root_pqu(p)] < self.id[self.get_root_pqu(q)]:
+        if self.sz[self.get_root_pqu(p)] < self.sz[self.get_root_pqu(q)]:
             self.id[self.get_root_pqu(p)] = self.get_root_pqu(q)
-            self.id[self.get_root_pqu(q)] += self.id[self.get_root_pqu(p)]
+            self.sz[self.get_root_pqu(q)] += self.sz[self.get_root_pqu(p)]
         else:
             self.id[self.get_root_pqu(q)] = self.get_root_pqu(p)
-            self.id[self.get_root_pqu(p)] += self.id[self.get_root_pqu(q)]
+            self.sz[self.get_root_pqu(p)] += self.sz[self.get_root_pqu(q)]
 
     def wpqu_connected(self, p, q):
         """Find operation for Weighted path compressed Quick-Union Algorithm.
