@@ -71,6 +71,8 @@ class UF(object):
          connect p and q.
 
          """
+        if self.get_root(p) == self.get_root(q):
+            return
         if self.id[self.get_root(p)] < self.id[self.get_root(q)]:
             self.id[self.get_root(p)] = self.get_root(q)
             self.id[self.get_root(q)] += self.id[self.get_root(p)]
@@ -112,7 +114,8 @@ class UF(object):
          connect p and q.
 
          """
-
+        if self.get_root_pqu(p) == self.get_root_pqu(q):
+            return
         if self.id[self.get_root_pqu(p)] < self.id[self.get_root_pqu(q)]:
             self.id[self.get_root_pqu(p)] = self.get_root_pqu(q)
             self.id[self.get_root_pqu(q)] += self.id[self.get_root_pqu(p)]
@@ -156,14 +159,75 @@ if __name__ == "__main__":
         timing_qf.append(total_time)
         print(total_time)
 
+    # for set_sz in set_szs:
+    #     # initialize network nodes
+    #     inodes = UF()
+    #     inodes.qf_init(set_sz)
+    #     t0 = time.time()
+    #
+    #     for idx in range(set_sz - 1):
+    #         rp = random.randint(0, set_sz - 1)
+    #         rq = random.randint(0, set_sz - 1)
+    #         inodes.qu_union(rp, rq)
+    #     t1 = time.time()
+    #     total_time = t1 - t0
+    #     timing_qu.append(total_time)
+    #     print(total_time)
+    #
+    # for set_sz in set_szs:
+    #     # initialize network nodes
+    #     inodes = UF()
+    #     inodes.qf_init(set_sz)
+    #     t0 = time.time()
+    #
+    #     for idx in range(set_sz - 1):
+    #         rp = random.randint(0, set_sz - 1)
+    #         rq = random.randint(0, set_sz - 1)
+    #         inodes.wqu_union(rp, rq)
+    #     t1 = time.time()
+    #     total_time = t1 - t0
+    #     timing_wqu.append(total_time)
+    #     print(total_time)
+    #
+    # for set_sz in set_szs:
+    #     # initialize network nodes
+    #     inodes = UF()
+    #     inodes.qf_init(set_sz)
+    #     t0 = time.time()
+    #
+    #     for idx in range(set_sz - 1):
+    #         rp = random.randint(0, set_sz - 1)
+    #         rq = random.randint(0, set_sz - 1)
+    #         inodes.pqu_union(rp, rq)
+    #     t1 = time.time()
+    #     total_time = t1 - t0
+    #     timing_pqu.append(total_time)
+    #     print(total_time)
+    #
+    # for set_sz in set_szs:
+    #     # initialize network nodes
+    #     inodes = UF()
+    #     inodes.qf_init(set_sz)
+    #     t0 = time.time()
+    #
+    #     for idx in range(set_sz - 1):
+    #         rp = random.randint(0, set_sz - 1)
+    #         rq = random.randint(0, set_sz - 1)
+    #         inodes.wpqu_union(rp, rq)
+    #     t1 = time.time()
+    #     total_time = t1 - t0
+    #     timing_wpqu.append(total_time)
+    #     print(total_time)
+
     # this plots things in log scale (pls google it), you need to add matplotlib to your virtualenv first!
     plt.plot(set_szs, timing_qf)
-    #plt.plot(set_szs, timing_qu)
-    #plt.plot(set_szs, timing_wqu)
-    #plt.plot(set_szs, timing_pqu)
-    #plt.plot(set_szs, timing_wpqu)
+    # plt.plot(set_szs, timing_qu)
+    # plt.plot(set_szs, timing_wqu)
+    # plt.plot(set_szs, timing_pqu)
+    # plt.plot(set_szs, timing_wpqu)
     plt.xscale('log')
     plt.yscale('log')
-    plt.title('log')
-    plt.ylabel('some numbers')
+    plt.title('Run Time')
+    plt.ylabel('Time')
+    plt.xlabel('Operations')
     plt.show()
