@@ -146,8 +146,11 @@ class Sorting(object):
             left = self.id[:mid]
             right = self.id[mid:]
 
-            index, j, s = 0, 0, 0
+            self.merge_sort(left)
+            self.merge_sort(right)
             
+            index, j, s = 0, 0, 0
+
             while index < len(left) and j < len(right):
                 if left[index] < right[index]:
                     self.id[s] = left[index]
