@@ -9,6 +9,7 @@ import time
 import random
 #import matplotlib.pyplot as plt
 
+
 class Sorting(object):
     """Sorting class
 
@@ -26,7 +27,7 @@ class Sorting(object):
         except ValueError:
             print('Sample size exceeded population size.')
 
-        #self.id = [random.randint(0, N - 1) for i in range(N)]
+        # self.id = [random.randint(0, N - 1) for i in range(N)]
 
     def get_id(self):
         """initialize the data structure
@@ -100,14 +101,39 @@ class Sorting(object):
 
         return self.id
 
+    def heap_setup(self, n, index):
+        largest = index
+        left = 2 * index + 1
+        right = 2 * index + 2
+
+        if left < n and self.id[index] < self.id[left]:
+            largest = left
+
+        if right < n and self.id[largest] < self.id[right]:
+            largest = right
+
+        if largest != index:
+            self.id[index], self.id[largest] = self.id[largest], self.id[i]
+
+            self.heap_setup(self, n, largest)
+
+        return self.id
+
     def heap_sort(self):
         """Heapsort is an improved selection sort: it divides its input into a sorted
         and an unsorted region, and it iteratively shrinks the unsorted region by
         extracting the largest element and moving that to the sorted region.
 
         """
+        size = len(self.id)
+        for i in range(size, -1, -1):
+            self.heap_setup(self.id, size, i)
 
-        return 1
+        for i in range(size - 1, 0, -1):
+            self.id[i], self.id[0] = self.id[0], self.id[i]           # for the swap
+            self.heap_setup(self.id, i, 0)
+
+        return self.id
 
     def merge_sort(self):
         """Merge sort is a divide and conquer algorithm that was invented
