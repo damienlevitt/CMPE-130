@@ -17,17 +17,14 @@ class Sorting(object):
     def __init__(self):
         self.id = []
 
-
     def sort_init(self, N):
         """initialize the data structure
 
         """
-
         try:
             self.id = random.sample(range(1, N ** 3), N)
         except ValueError:
             print('Sample size exceeded population size.')
-
 
         #self.id = [random.randint(0, N - 1) for i in range(N)]
 
@@ -37,7 +34,6 @@ class Sorting(object):
         """
 
         return self.id
-
 
     def selection_sort(self):
         """Selection sort algorithm is an
@@ -51,14 +47,13 @@ class Sorting(object):
 
             for j_idx in range(i_idx+1, len(self.id)):
 
-                if (self.id[j_idx] < self.id[min]):
+                if self.id[j_idx] < self.id[min]:
                     min = j_idx
 
             # swap
             temp = self.id[i_idx]
             self.id[i_idx] = self.id[min]
             self.id[min] = temp
-
 
         return self.id
 
@@ -69,8 +64,17 @@ class Sorting(object):
         selection sort or bubble sort specifically an
 
         """
+        for i_indx in enumerate(self.id):
+            key = self.id[i_indx]
 
-        return 1
+            j_indx = i_indx - 1
+
+            while j_indx >= 0 and key < self.id[j_indx]:
+                self.id[j_indx + 1] = self.id[j_indx]
+                j_indx -= 1
+                self.id[j_indx + 1] = key
+
+        return self.id
 
     def shell_sort(self):
         """Shell sort also known as  or Shell's method, is an in-place comparison sort.
