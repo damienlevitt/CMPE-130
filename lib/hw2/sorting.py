@@ -113,7 +113,7 @@ class Sorting(object):
             largest = right
 
         if largest != index:
-            self.id[index], self.id[largest] = self.id[largest], self.id[i]
+            self.id[index], self.id[largest] = self.id[largest], self.id[index]
 
             self.heap_setup(self, n, largest)
 
