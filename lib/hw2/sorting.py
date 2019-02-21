@@ -27,7 +27,7 @@ class Sorting(object):
         except ValueError:
             print('Sample size exceeded population size.')
 
-        # self.id = [random.randint(0, N - 1) for i in range(N)]
+        self.id = [random.randint(0, N - 1) for i in range(N)]
 
     def get_id(self):
         """initialize the data structure
@@ -65,7 +65,7 @@ class Sorting(object):
         selection sort or bubble sort specifically an
 
         """
-        for i_indx in enumerate(self.id):
+        for i_indx in range(len(self.id)):
             key = self.id[i_indx]
 
             j_indx = i_indx - 1
@@ -102,6 +102,7 @@ class Sorting(object):
         return self.id
 
     def heap_setup(self, n, index):
+
         largest = index
         left = 2 * index + 1
         right = 2 * index + 2
@@ -114,10 +115,9 @@ class Sorting(object):
 
         if largest != index:
             self.id[index], self.id[largest] = self.id[largest], self.id[index]
+            self.heap_setup(n, largest)
 
-            self.heap_setup(self, n, largest)
-
-        return self.id
+        return self.get_id()
 
     def heap_sort(self):
         """Heapsort is an improved selection sort: it divides its input into a sorted
@@ -127,11 +127,11 @@ class Sorting(object):
         """
         size = len(self.id)
         for i in range(size, -1, -1):
-            self.heap_setup(self.id, size, i)
+            self.heap_setup(size, i)
 
         for i in range(size - 1, 0, -1):
             self.id[i], self.id[0] = self.id[0], self.id[i]           # for the swap
-            self.heap_setup(self.id, i, 0)
+            self.heap_setup(i, 0)
 
         return self.id
 
@@ -141,8 +141,33 @@ class Sorting(object):
         sort, which means that the implementation preserves the input order
         of equal elements in the sorted output.
         """
+        if len(self.id) > 1:
+            mid = len(self.id)//2
+            left = self.id[:mid]
+            right = self.id[mid:]
 
-        return 1
+            index, j, s = 0, 0, 0
+            
+            while index < len(left) and j < len(right):
+                if left[index] < right[index]:
+                    self.id[s] = left[index]
+                    index += 1
+                else:
+                    self.id[s] = right[j]
+                    j += 1
+                s += 1
+
+            while index < len(left):
+                self.id[s] = left[index]
+                index += 1
+                s += 1
+
+            while j < len(right):
+                self.id[s] = right[j]
+                j += 1
+                s += 1
+
+        return self.id
 
     def quick_sort(self):
         """Quicksort (sometimes called partition-exchange sort) is an efficient
