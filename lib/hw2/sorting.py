@@ -82,8 +82,23 @@ class Sorting(object):
         or sorting by insertion (insertion sort).
 
         """
+        size = len(self.id)
+        leap = size//2
 
-        return 1
+        while leap > 0:
+
+            for i_indx in range(leap, size):
+                temp = self.id[i_indx]
+                j_indx = i_indx
+
+                while j_indx >= leap and self.id[j_indx - leap] > temp:
+                    self.id[j_indx] = self.id[j_indx - leap]
+                    j_indx -= leap
+                self.id[j_indx] = temp
+
+            leap //= 2
+
+        return self.id
 
     def heap_sort(self):
         """Heapsort is an improved selection sort: it divides its input into a sorted
