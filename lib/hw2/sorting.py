@@ -17,6 +17,7 @@ class Sorting(object):
 
     def __init__(self):
         self.id = []
+        self.helper = []
 
     def sort_init(self, N):
         """initialize the data structure
@@ -148,7 +149,7 @@ class Sorting(object):
 
             self.merge_sort(left)
             self.merge_sort(right)
-            
+
             index, j, s = 0, 0, 0
 
             while index < len(left) and j < len(right):
@@ -172,7 +173,19 @@ class Sorting(object):
 
         return self.id
 
-    def quick_sort(self):
+    def partition(self, low, high):
+        index = (low - 1)
+        pivot = self.id[high]
+
+        for j in range(low, high):
+            if self.id[j] <= pivot:
+                index = index + 1
+                self.id[index], self.id[j] = self.id[j], self.id[index]
+
+        self.id[index + 1], self.id[high] = self.id[high], self.id[index + 1]
+        return index + 1
+
+    def quick_sort(self, low, high):
         """Quicksort (sometimes called partition-exchange sort) is an efficient
         sorting algorithm. Developed by Tony Hoare in 1959. It is still a commonly
         used algorithm for sorting. When implemented well, it can be about two or
@@ -180,7 +193,13 @@ class Sorting(object):
 
         """
 
-        return 1
+        if low < high:
+            i = self.partition(low, high)
+
+            self.quick_sort(low, i - 1)
+            self.quick_sort(i + 1, high)
+
+        return self.id
 
 
     # this plots things in log scale (pls google it), you need to add matplotlib
