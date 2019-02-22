@@ -136,7 +136,7 @@ class Sorting(object):
 
         return self.id
 
-    def merge_sort(self):
+    def merge_sort(self, side):
         """Merge sort is a divide and conquer algorithm that was invented
         by John von Neumann in 1945. Most implementations produce a stable
         sort, which means that the implementation preserves the input order
@@ -200,6 +200,7 @@ class Sorting(object):
             self.quick_sort(i + 1, high)
 
         return self.id
+
 
 
     # this plots things in log scale (pls google it), you need to add matplotlib
