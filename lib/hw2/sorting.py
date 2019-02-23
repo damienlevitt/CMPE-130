@@ -136,13 +136,44 @@ class Sorting(object):
 
         return self.id
 
+    def merge(self, low, mid, high):
+        i, j = low, mid+1
+
+        for k in range(low, high):
+            self.helper[k] = self.id
+
+        for k in range(low, high):
+            if i > mid:
+                self.id[k] = self.helper[j]
+                j += 1
+            elif j > high:
+                self.id[k] = self.helper[j]
+                i += 1
+            elif min(self.helper[j], self.helper[i]):
+                self.id[k] = self.helper[j]
+                j += 1
+            else:
+                self.id[k] = self.helper[i]
+                i += 1
+        return self.id
+
+    def sort(self, low, high):
+        if high <= low:
+            return
+        mid = low + (high - low)//2
+        self.sort(low, high)
+        self.sort(mid+1, high)
+        self.merge(low, mid, high)
+
+        return self.id
+
     def merge_sort(self):
         """Merge sort is a divide and conquer algorithm that was invented
         by John von Neumann in 1945. Most implementations produce a stable
         sort, which means that the implementation preserves the input order
         of equal elements in the sorted output.
         """
-        
+
 
         return self.id
 
