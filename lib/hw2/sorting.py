@@ -136,40 +136,13 @@ class Sorting(object):
 
         return self.id
 
-    def merge_sort(self, side):
+    def merge_sort(self):
         """Merge sort is a divide and conquer algorithm that was invented
         by John von Neumann in 1945. Most implementations produce a stable
         sort, which means that the implementation preserves the input order
         of equal elements in the sorted output.
         """
-        if len(self.id) > 1:
-            mid = len(self.id)//2
-            left = self.id[:mid]
-            right = self.id[mid:]
-
-            self.merge_sort(left)
-            self.merge_sort(right)
-
-            index, j, s = 0, 0, 0
-
-            while index < len(left) and j < len(right):
-                if left[index] < right[index]:
-                    self.id[s] = left[index]
-                    index += 1
-                else:
-                    self.id[s] = right[j]
-                    j += 1
-                s += 1
-
-            while index < len(left):
-                self.id[s] = left[index]
-                index += 1
-                s += 1
-
-            while j < len(right):
-                self.id[s] = right[j]
-                j += 1
-                s += 1
+        
 
         return self.id
 
@@ -201,7 +174,15 @@ class Sorting(object):
 
         return self.id
 
-
+    if __name__ == "__main__":
+            # iteration
+            set_szs = [sort_init(100)]
+            timing_selection = []
+            timing_insertion = []
+            timing_shell = []
+            timing_heap = []
+            timing_merge = []
+            timing_quick = []
 
     # this plots things in log scale (pls google it), you need to add matplotlib
     # to your virtualenv first!
