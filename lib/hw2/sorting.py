@@ -9,11 +9,47 @@ import time
 import random
 #import matplotlib.pyplot as plt
 
+aux = []
+
+
+def merge(a, low, mid, high):
+    i, j = low, mid + 1
+
+    for k in range(low, high):
+        aux[k] = a[k]
+
+    for k in range(low, high):
+        if i > mid:
+            a[k] = aux[j]
+            j += 1
+        elif j > high:
+            a[k] = aux[j]
+            i += 1
+        elif aux[j] < aux[i]:
+            a[k] = aux[j]
+            j += 1
+        else:
+            a[k] = aux[i]
+            i += 1
+    return a
+
+
+def sort(a, low, high):
+    if high <= low:
+        return
+    mid = low + (high - low)//2
+    sort(a, low, high)
+    sort(a, mid+1, high)
+    merge(a, low, mid, high)
+
+    return a
+
 
 class Sorting(object):
     """Sorting class
 
     """
+    a = []
 
     def __init__(self):
         self.id = []
@@ -136,46 +172,16 @@ class Sorting(object):
 
         return self.id
 
-    def merge(self, low, mid, high):
-        i, j = low, mid+1
-
-        for k in range(low, high):
-            self.helper[k] = self.id
-
-        for k in range(low, high):
-            if i > mid:
-                self.id[k] = self.helper[j]
-                j += 1
-            elif j > high:
-                self.id[k] = self.helper[j]
-                i += 1
-            elif min(self.helper[j], self.helper[i]):
-                self.id[k] = self.helper[j]
-                j += 1
-            else:
-                self.id[k] = self.helper[i]
-                i += 1
-        return self.id
-
-    def sort(self, low, high):
-        if high <= low:
-            return
-        mid = low + (high - low)//2
-        self.sort(low, high)
-        self.sort(mid+1, high)
-        self.merge(low, mid, high)
-
-        return self.id
-
-    def merge_sort(self):
+    def merge_sort(a):
         """Merge sort is a divide and conquer algorithm that was invented
         by John von Neumann in 1945. Most implementations produce a stable
         sort, which means that the implementation preserves the input order
         of equal elements in the sorted output.
         """
+        a = [None] * 10
+        sort(a, 0, len(a) - 1)
 
-
-        return self.id
+        return a
 
     def partition(self, low, high):
         index = (low - 1)

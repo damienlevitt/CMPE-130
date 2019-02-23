@@ -79,7 +79,7 @@ class Test_UF(object):
 
         expected = sorted(arr_under_test.get_id())
 
-        actual = arr_under_test.merge_sort(arr_under_test.get_id())
+        actual = arr_under_test.merge_sort()
 
         assert expected == actual
 
