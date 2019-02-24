@@ -17,6 +17,7 @@ class Sorting(object):
 
     def __init__(self):
         self.id = []
+        self.helper =[]
 
     def sort_init(self, N):
         """initialize the data structure
@@ -200,34 +201,35 @@ class Sorting(object):
 
         return self.id
 
-    if __name__ == "__main__":
+if __name__ == "__main__":
             # iteration
-            set_szs = []
-            timing_selection = []
-            timing_insertion = []
-            timing_shell = []
-            timing_heap = []
-            timing_merge = []
-            timing_quick = []
+        set_szs = []
+        timing_selection = []
+        timing_insertion = []
+        timing_shell = []
+        timing_heap = []
+        timing_merge = []
+        timing_quick = []
 
 
-        # initialize network nodes
-            sort_init(10)
-            t0 = time.time()
-            selection_sort()
-            t1 = time.time()
-            total_time = t1 - t0
-            timing_selection.append(total_time)
-            print(total_time)
+    # initialize network nodes
+        sort = Sorting()
+        sort.sort_init(10)
+        t0 = time.time()
+        sort.selection_sort()
+        t1 = time.time()
+        total_time = t1 - t0
+        timing_selection.append(total_time)
+        print(total_time)
 
     # this plots things in log scale (pls google it), you need to add matplotlib
     # to your virtualenv first!
 
     # plot also python's sorted() function to see how well you do.
 
-    plt.plot(set_szs, timing_selection)
+        plt.plot(, timing_selection)
     #plt.xscale('log')
     #plt.yscale('log')
    # plt.title('log')
-    plt.ylabel('some numbers')
-    plt.show()
+        plt.ylabel('some numbers')
+        plt.show()
