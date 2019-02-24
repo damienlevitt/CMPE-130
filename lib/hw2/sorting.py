@@ -212,6 +212,21 @@ class Sorting(object):
             timing_merge = []
             timing_quick = []
 
+    for set_sz in set_szs:
+        # initialize network nodes
+        inodes = Sorting()
+        inodes.qf_init(set_sz)
+        t0 = time.time()
+
+        for idx in range(set_sz - 1):
+            rp = random.randint(0, set_sz - 1)
+            rq = random.randint(0, set_sz - 1)
+            inodes.qf_union(rp, rq)
+        t1 = time.time()
+        total_time = t1 - t0
+        timing_qf.append(total_time)
+        print(total_time)
+
     # this plots things in log scale (pls google it), you need to add matplotlib
     # to your virtualenv first!
 
