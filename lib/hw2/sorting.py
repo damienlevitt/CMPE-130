@@ -210,13 +210,10 @@ class Sorting(object):
             timing_merge = []
             timing_quick = []
 
-    for set_sz in set_szs:
+
         # initialize network nodes
-
-        sort_init(set_sz)
-        t0 = time.time()
-
-        for idx in range(set_sz - 1):
+            sort_init(10)
+            t0 = time.time()
             selection_sort()
             t1 = time.time()
             total_time = t1 - t0
@@ -229,8 +226,8 @@ class Sorting(object):
     # plot also python's sorted() function to see how well you do.
 
     plt.plot(set_szs, timing_selection)
-    plt.xscale('log')
-    plt.yscale('log')
-    plt.title('log')
+    #plt.xscale('log')
+    #plt.yscale('log')
+   # plt.title('log')
     plt.ylabel('some numbers')
     plt.show()
