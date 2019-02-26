@@ -17,7 +17,7 @@ class Sorting(object):
 
     def __init__(self):
         self.id = []
-        self.helper =[]
+        self.helper = []
 
     def sort_init(self, N):
         """initialize the data structure
@@ -221,28 +221,28 @@ if __name__ == "__main__":
         t1 = time.time()
         total_time = t1 - t0
         timing_selection.append(total_time)
-        print(total_time)
+        print(timing_selection)
 
         t2 = time.time()
         sort.insertion_sort()
         t3 = time.time()
         total_time = t3 - t2
         timing_insertion.append(total_time)
-        print(total_time)
+        print(timing_insertion)
 
         t4 = time.time()
         sort.shell_sort()
         t5 = time.time()
         total_time = t5 - t4
         timing_shell.append(total_time)
-        print(total_time)
+        print(timing_shell)
 
         t6 = time.time()
         sort.heap_sort()
         t7 = time.time()
         total_time = t7 - t6
         timing_heap.append(total_time)
-        print(total_time)
+        print(timing_heap)
 
     # this plots things in log scale (pls google it), you need to add matplotlib
     # to your virtualenv first!
