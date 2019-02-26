@@ -222,6 +222,27 @@ if __name__ == "__main__":
         timing_selection.append(total_time)
         print(total_time)
 
+        t2 = time.time()
+        sort.insertion_sort()
+        t3 = time.time()
+        total_time = t3 - t2
+        timing_insertion.append(total_time)
+        print(total_time)
+
+        t4 = time.time()
+        sort.shell_sort()
+        t5 = time.time()
+        total_time = t5 - t4
+        timing_shell.append(total_time)
+        print(total_time)
+
+        t6 = time.time()
+        sort.heap_sort()
+        t7 = time.time()
+        total_time = t7 - t6
+        timing_heap.append(total_time)
+        print(total_time)
+
     # this plots things in log scale (pls google it), you need to add matplotlib
     # to your virtualenv first!
 
