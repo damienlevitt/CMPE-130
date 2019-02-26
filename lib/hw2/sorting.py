@@ -202,8 +202,11 @@ class Sorting(object):
         return self.id
 
 if __name__ == "__main__":
-            # iteration
-        set_szs = []
+
+
+        # iteration
+
+        set_szs = 10
         timing_selection = []
         timing_insertion = []
         timing_shell = []
@@ -211,10 +214,8 @@ if __name__ == "__main__":
         timing_merge = []
         timing_quick = []
 
-
-    # initialize network nodes
         sort = Sorting()
-        sort.sort_init(10)
+        sort.sort_init(set_szs)
         t0 = time.time()
         sort.selection_sort()
         t1 = time.time()
@@ -248,9 +249,13 @@ if __name__ == "__main__":
 
     # plot also python's sorted() function to see how well you do.
 
-        plt.plot(, timing_selection)
-    #plt.xscale('log')
-    #plt.yscale('log')
-   # plt.title('log')
-        plt.ylabel('some numbers')
+        plt.plot(set_szs, timing_selection)
+        plt.plot(set_szs, timing_insertion)
+        plt.plot(set_szs, timing_shell)
+        plt.plot(set_szs, timing_heap)
+        plt.plot(set_szs, timing_selection)
+        #plt.xscale('log')
+        #plt.yscale('log')
+        #plt.title('log')
+        plt.ylabel('Timing')
         plt.show()
