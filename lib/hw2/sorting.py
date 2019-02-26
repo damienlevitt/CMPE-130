@@ -207,41 +207,34 @@ if __name__ == "__main__":
         # iteration
 
         set_szs = 10
-        timing_selection = []
-        timing_insertion = []
-        timing_shell = []
-        timing_heap = []
-        timing_merge = []
-        timing_quick = []
 
         sort = Sorting()
         sort.sort_init(set_szs)
         t0 = time.time()
         sort.selection_sort()
         t1 = time.time()
-        total_time = t1 - t0
-        timing_selection.append(total_time)
+        timing_selection = t1 - t0
         print(timing_selection)
 
+        sort.sort_init(set_szs)
         t2 = time.time()
         sort.insertion_sort()
         t3 = time.time()
-        total_time = t3 - t2
-        timing_insertion.append(total_time)
+        timing_insertion = t3 - t2
         print(timing_insertion)
 
+        sort.sort_init(set_szs)
         t4 = time.time()
         sort.shell_sort()
         t5 = time.time()
-        total_time = t5 - t4
-        timing_shell.append(total_time)
+        timing_shell = t5 - t4
         print(timing_shell)
 
+        sort.sort_init(set_szs)
         t6 = time.time()
         sort.heap_sort()
         t7 = time.time()
-        total_time = t7 - t6
-        timing_heap.append(total_time)
+        timing_heap = t7 - t6
         print(timing_heap)
 
     # this plots things in log scale (pls google it), you need to add matplotlib
