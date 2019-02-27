@@ -168,8 +168,15 @@ class Sorting(object):
                 self.id[combined] = right[second]
                 second += 1
                 combined += 1
-            
+
         return self.id
+
+    def merge_together(self, low, high):
+        if low < high:
+            mid = (high - 1 + low)//2
+            Sorting.merge_together(self, low, mid)
+            Sorting.merge_together(self, mid + 1, high)
+            Sorting.merge(self, low, mid, high)
 
     def merge_sort(self):
         """Merge sort is a divide and conquer algorithm that was invented
@@ -177,14 +184,7 @@ class Sorting(object):
         sort, which means that the implementation preserves the input order
         of equal elements in the sorted output.
         """
-        s = 1
-        lo = 0
-        while s < len(self.id):
-            s = s+s
-            while lo < len(self.id) - s:
-                lo += s+s
-                self.merge(lo, lo+s-1, min(lo+s+s-1, len(self.id) - 1))
-
+        Sorting.merge_together(self, 0, len(self.id) - 1)
         return self.id
 
     def partition(self, low, high):
