@@ -137,24 +137,38 @@ class Sorting(object):
         return self.id
 
     def merge(self, low, mid, high):
-        i, j = low, mid + 1
+        low = mid - low + 1
+        high = high - mid
 
-        for k in range(low, high+1):
-            self.helper[k] = self.id[k]
+        right = [0] * low
+        left = [0] * high
 
-        for k in range(low, high):
-            if i > mid:
-                self.id[k] = self.helper[j]
-                j += 1
-            elif j > high:
-                self.id[k] = self.helper[j]
-                i += 1
-            elif self.helper[j] < self.helper[i]:
-                self.id[k] = self.helper[j]
-                j += 1
+        for i in range(0, low):
+            left[i] = self.id[low + 1]
+        for i in range(0, high):
+            right[i] = self.id[mid + 1 + i]
+
+            first = second = 0
+            combined = low
+
+        while first < low and second < high:
+            if left[first] <= right[second]:
+                self.id[combined] = left[first]
+                first += 1
             else:
-                self.id[k] = self.helper[i]
-                i += 1
+                self.id[combined] = right[second]
+                second += 1
+            combined += 1
+
+            while first < low:
+                self.id[combined] = left[first]
+                first += 1
+                combined += 1
+            while second < high:
+                self.id[combined] = right[second]
+                second += 1
+                combined += 1
+            
         return self.id
 
     def merge_sort(self):
