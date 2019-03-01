@@ -10,33 +10,6 @@ import random
 import matplotlib.pyplot as plt
 
 
-def merge(low, mid, high):
-    helper = []
-    aux = []
-    i = low
-    j = mid + 1
-    k = low
-    while k <= high:
-        k += 1
-        aux[k] = helper[k]
-    k = low
-    while k <= high:
-        k += 1
-        if i > mid:
-            helper[k] = aux[j]
-            j += 1
-        elif j > high:
-            helper[k] = aux[i]
-            i += 1
-        elif min(aux[j], aux[i]):
-            helper[k] = aux[j]
-            j += 1
-        else:
-            helper[k] = aux[i]
-            i += 1
-    return helper
-
-
 class Sorting(object):
     """Sorting class
 
@@ -44,7 +17,7 @@ class Sorting(object):
 
     def __init__(self):
         self.id = []
-        self.helper = []
+        self.helper = [None] * 10
 
     def sort_init(self, N):
         """initialize the data structure
@@ -166,11 +139,35 @@ class Sorting(object):
     def sort(self, low, high):
         if high <= low:
             return
-        mid = (low + (high - low))//2
+        mid = low + (high - low)//2
         self.sort(low, mid)
         self.sort(mid + 1, high)
-        merge(low, mid, high)
+        self.merge(low, mid, high)
 
+        return self.id
+
+    def merge(self, low, mid, high):
+        i = low
+        j = mid + 1
+        k = low
+        while k <= high:
+            self.helper[k] = self.id[k]
+            k += 1
+        k = low
+        while k <= high:
+            k += 1
+            if i > mid:
+                self.id[k] = self.helper[j]
+                j += 1
+            elif j > high:
+                self.id[k] = self.helper[i]
+                i += 1
+            elif self.helper[j] < self.helper[i]:
+                self.id[k] = self.helper[j]
+                j += 1
+            else:
+                self.id[k] = self.helper[i]
+                i += 1
         return self.id
 
     def merge_sort(self):
