@@ -10,6 +10,33 @@ import random
 import matplotlib.pyplot as plt
 
 
+def merge(low, mid, high):
+    helper = []
+    aux = []
+    i = low
+    j = mid + 1
+    k = low
+    while k <= high:
+        k += 1
+        aux[k] = helper[k]
+    k = low
+    while k <= high:
+        k += 1
+        if i > mid:
+            helper[k] = aux[j]
+            j += 1
+        elif j > high:
+            helper[k] = aux[i]
+            i += 1
+        elif min(aux[j], aux[i]):
+            helper[k] = aux[j]
+            j += 1
+        else:
+            helper[k] = aux[i]
+            i += 1
+    return helper
+        
+
 class Sorting(object):
     """Sorting class
 
@@ -136,47 +163,12 @@ class Sorting(object):
 
         return self.id
 
-    def merge(self, low, mid, high):
-        low = mid - low + 1
-        high = high - mid
+    def merge(low, mid, high):
 
-        right = [0] * low
-        left = [0] * high
 
-        for i in range(0, low):
-            left[i] = self.id[low + 1]
-        for i in range(0, high):
-            right[i] = self.id[mid + 1 + i]
+        return
 
-            first = second = 0
-            combined = low
 
-        while first < low and second < high:
-            if left[first] <= right[second]:
-                self.id[combined] = left[first]
-                first += 1
-            else:
-                self.id[combined] = right[second]
-                second += 1
-            combined += 1
-
-            while first < low:
-                self.id[combined] = left[first]
-                first += 1
-                combined += 1
-            while second < high:
-                self.id[combined] = right[second]
-                second += 1
-                combined += 1
-
-        return self.id
-
-    def merge_together(self, low, high):
-        if low < high:
-            mid = (high - 1 + low)//2
-            Sorting.merge_together(self, low, mid)
-            Sorting.merge_together(self, mid + 1, high)
-            Sorting.merge(self, low, mid, high)
 
     def merge_sort(self):
         """Merge sort is a divide and conquer algorithm that was invented
@@ -208,10 +200,10 @@ class Sorting(object):
         """
 
         if low < high:
-            i = self.partition(low, high)
+            i = Sorting.partition(self, low, high)
 
-            self.quick_sort(low, i - 1)
-            self.quick_sort(i + 1, high)
+            Sorting.quick_sort(self, low, i - 1)
+            Sorting.quick_sort(self, i + 1, high)
 
         return self.id
 
