@@ -35,7 +35,7 @@ def merge(low, mid, high):
             helper[k] = aux[i]
             i += 1
     return helper
-        
+
 
 class Sorting(object):
     """Sorting class
@@ -163,12 +163,15 @@ class Sorting(object):
 
         return self.id
 
-    def merge(low, mid, high):
+    def sort(self, low, high):
+        if high <= low:
+            return
+        mid = (low + (high - low))//2
+        self.sort(low, mid)
+        self.sort(mid + 1, high)
+        merge(low, mid, high)
 
-
-        return
-
-
+        return self.id
 
     def merge_sort(self):
         """Merge sort is a divide and conquer algorithm that was invented
@@ -176,7 +179,7 @@ class Sorting(object):
         sort, which means that the implementation preserves the input order
         of equal elements in the sorted output.
         """
-        Sorting.merge_together(self, 0, len(self.id) - 1)
+        self.sort(0, len(self.id) - 1)
         return self.id
 
     def partition(self, low, high):
