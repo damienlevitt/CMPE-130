@@ -215,9 +215,9 @@ class Sorting(object):
 if __name__ == "__main__":
 
         # iteration
-
-        timing = [[]] * 7
-        x = [10 ** i for i in range(1, 5)]
+        set_sz = [10]
+        timing = [[], [], [], [], [], [], []]
+        x = [10 ** i for i in range(0, 5)]
 
         for set_sz in x:
             sort = Sorting()
@@ -226,7 +226,7 @@ if __name__ == "__main__":
             sort.selection_sort()
             t1 = time.time()
             tot_time = t1 - t0
-            timing[0] = tot_time
+            timing[0].append(tot_time)
             print(tot_time)
 
         for set_sz in x:
@@ -236,7 +236,7 @@ if __name__ == "__main__":
             sort.insertion_sort()
             t1 = time.time()
             tot_time = t1 - t0
-            timing[1] = tot_time
+            timing[1].append(tot_time)
             print(tot_time)
 
         for set_sz in x:
@@ -246,7 +246,7 @@ if __name__ == "__main__":
             sort.shell_sort()
             t1 = time.time()
             tot_time = t1 - t0
-            timing[2] = tot_time
+            timing[2].append(tot_time)
             print(tot_time)
 
         for set_sz in x:
@@ -256,7 +256,7 @@ if __name__ == "__main__":
             sort.heap_sort()
             t1 = time.time()
             tot_time = t1 - t0
-            timing[3] = tot_time
+            timing[3].append(tot_time)
             print(tot_time)
 
         for set_sz in x:
@@ -266,7 +266,7 @@ if __name__ == "__main__":
             sort.merge_sort()
             t1 = time.time()
             tot_time = t1 - t0
-            timing[4] = tot_time
+            timing[4].append(tot_time)
             print(tot_time)
 
         for set_sz in x:
@@ -276,7 +276,7 @@ if __name__ == "__main__":
             sort.quick_sort()
             t1 = time.time()
             tot_time = t1 - t0
-            timing[5] = tot_time
+            timing[5].append(tot_time)
             print(tot_time)
 
         for set_sz in x:
@@ -286,7 +286,7 @@ if __name__ == "__main__":
             x.sort()
             t1 = time.time()
             tot_time = t1 - t0
-            timing[5] = tot_time
+            timing[6].append(tot_time)
             print(tot_time)
 
     # this plots things in log scale (pls google it), you need to add matplotlib
@@ -306,4 +306,5 @@ if __name__ == "__main__":
         plt.yscale('log')
         plt.title('log')
         plt.ylabel('Timing')
+        plt.xlabel('Set Size')
         plt.show()
