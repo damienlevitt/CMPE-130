@@ -217,46 +217,81 @@ if __name__ == "__main__":
         # iteration
 
         set_szs = 10
+        timing = [0] * 10
+        x = [10 ** i for i in range(1, 5)]
 
-        sort = Sorting()
-        sort.sort_init(set_szs)
-        t0 = time.time()
-        sort.selection_sort()
-        t1 = time.time()
-        timing_selection = t1 - t0
-        print(timing_selection)
+        for set_sz in x:
+            sort = Sorting()
+            sort.sort_init(set_sz)
+            t0 = time.time()
+            sort.selection_sort()
+            t1 = time.time()
+            tot_time = t1 - t0
+            timing[0] = tot_time
+            print(tot_time)
 
-        sort.sort_init(set_szs)
-        t2 = time.time()
-        sort.insertion_sort()
-        t3 = time.time()
-        timing_insertion = t3 - t2
-        print(timing_insertion)
+        for set_sz in x:
+            sort = Sorting()
+            sort.sort_init(set_sz)
+            t0 = time.time()
+            sort.insertion_sort()
+            t1 = time.time()
+            tot_time = t1 - t0
+            timing[1] = tot_time
+            print(tot_time)
 
-        sort.sort_init(set_szs)
-        t4 = time.time()
-        sort.shell_sort()
-        t5 = time.time()
-        timing_shell = t5 - t4
-        print(timing_shell)
+        for set_sz in x:
+            sort = Sorting()
+            sort.sort_init(set_sz)
+            t0 = time.time()
+            sort.shell_sort()
+            t1 = time.time()
+            tot_time = t1 - t0
+            timing[2] = tot_time
+            print(tot_time)
 
-        sort.sort_init(set_szs)
-        t6 = time.time()
-        sort.heap_sort()
-        t7 = time.time()
-        timing_heap = t7 - t6
-        print(timing_heap)
+        for set_sz in x:
+            sort = Sorting()
+            sort.sort_init(set_sz)
+            t0 = time.time()
+            sort.heap_sort()
+            t1 = time.time()
+            tot_time = t1 - t0
+            timing[3] = tot_time
+            print(tot_time)
+
+        for set_sz in x:
+            sort = Sorting()
+            sort.sort_init(set_sz)
+            t0 = time.time()
+            sort.merge_sort()
+            t1 = time.time()
+            tot_time = t1 - t0
+            timing[4] = tot_time
+            print(tot_time)
+
+        for set_sz in x:
+            sort = Sorting()
+            sort.sort_init(set_sz)
+            t0 = time.time()
+            sort.quick_sort()
+            t1 = time.time()
+            tot_time = t1 - t0
+            timing[5] = tot_time
+            print(tot_time)
 
     # this plots things in log scale (pls google it), you need to add matplotlib
     # to your virtualenv first!
 
     # plot also python's sorted() function to see how well you do.
 
-        plt.plot(set_szs, timing_selection)
-        plt.plot(set_szs, timing_insertion)
-        plt.plot(set_szs, timing_shell)
-        plt.plot(set_szs, timing_heap)
-        plt.plot(set_szs, timing_selection)
+        plt.plot(x, timing[0], set_szs, label="Selection Sort")
+        plt.plot(x, timing[1], set_szs, label="Insertion Sort")
+        plt.plot(x, timing[2], set_szs, label="Shell Sort")
+        plt.plot(x, timing[3], set_szs, label="Heap Sort")
+        plt.plot(x, timing[4], set_szs, label="Merge Sort")
+        plt.plot(x, timing[5], set_szs, label="Selection Sort")
+        plt.plot(x, timing[6], set_szs, label="Python Sort")
         #plt.xscale('log')
         #plt.yscale('log')
         #plt.title('log')
