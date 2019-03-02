@@ -217,7 +217,7 @@ if __name__ == "__main__":
         # iteration
         set_sz = [10]
         timing = [[], [], [], [], [], [], []]
-        x = [10 ** i for i in range(0, 5)]
+        x = [10 ** i for i in range(1, 5)]
 
         for set_sz in x:
             sort = Sorting()
