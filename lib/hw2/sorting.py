@@ -192,19 +192,22 @@ class Sorting(object):
         self.id[index + 1], self.id[high] = self.id[high], self.id[index + 1]
         return index + 1
 
-    def quick_sort(self, low, high):
+    def quick(self, low, high):
+        if low < high:
+            partit = self.partition(low, high)
+            self.quick(low, partit - 1)
+            self.quick(partit + 1, high)
+        return self.id
+
+    def quick_sort(self):
         """Quicksort (sometimes called partition-exchange sort) is an efficient
         sorting algorithm. Developed by Tony Hoare in 1959. It is still a commonly
         used algorithm for sorting. When implemented well, it can be about two or
         three times faster than its main competitors, merge sort and heapsort.
 
         """
-
-        if low < high:
-            i = Sorting.partition(self, low, high)
-
-            Sorting.quick_sort(self, low, i - 1)
-            Sorting.quick_sort(self, i + 1, high)
+        random.shuffle(self.id)
+        self.quick(0, len(self.id) - 1)
 
         return self.id
 
