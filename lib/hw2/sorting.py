@@ -17,7 +17,7 @@ class Sorting(object):
 
     def __init__(self):
         self.id = []
-        self.helper = [None] * 10
+        self.helper = []
 
     def sort_init(self, N):
         """initialize the data structure
@@ -29,6 +29,7 @@ class Sorting(object):
             print('Sample size exceeded population size.')
 
         self.id = [random.randint(0, N - 1) for i in range(N)]
+        self.helper = [0] * N
 
     def get_id(self):
         """initialize the data structure
@@ -155,7 +156,6 @@ class Sorting(object):
             k += 1
         k = low
         while k <= high:
-            k += 1
             if i > mid:
                 self.id[k] = self.helper[j]
                 j += 1
@@ -168,6 +168,7 @@ class Sorting(object):
             else:
                 self.id[k] = self.helper[i]
                 i += 1
+            k += 1
         return self.id
 
     def merge_sort(self):
