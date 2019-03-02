@@ -211,13 +211,12 @@ class Sorting(object):
 
         return self.id
 
-if __name__ == "__main__":
 
+if __name__ == "__main__":
 
         # iteration
 
-        set_szs = 10
-        timing = [0] * 10
+        timing = [[]] * 7
         x = [10 ** i for i in range(1, 5)]
 
         for set_sz in x:
@@ -280,20 +279,31 @@ if __name__ == "__main__":
             timing[5] = tot_time
             print(tot_time)
 
+        for set_sz in x:
+            sort = Sorting()
+            sort.sort_init(set_sz)
+            t0 = time.time()
+            x.sort()
+            t1 = time.time()
+            tot_time = t1 - t0
+            timing[5] = tot_time
+            print(tot_time)
+
     # this plots things in log scale (pls google it), you need to add matplotlib
     # to your virtualenv first!
 
     # plot also python's sorted() function to see how well you do.
 
-        plt.plot(x, timing[0], set_szs, label="Selection Sort")
-        plt.plot(x, timing[1], set_szs, label="Insertion Sort")
-        plt.plot(x, timing[2], set_szs, label="Shell Sort")
-        plt.plot(x, timing[3], set_szs, label="Heap Sort")
-        plt.plot(x, timing[4], set_szs, label="Merge Sort")
-        plt.plot(x, timing[5], set_szs, label="Selection Sort")
-        plt.plot(x, timing[6], set_szs, label="Python Sort")
-        #plt.xscale('log')
-        #plt.yscale('log')
-        #plt.title('log')
+        plt.plot(x, timing[0], label="Selection Sort")
+        plt.plot(x, timing[1], label="Insertion Sort")
+        plt.plot(x, timing[2], label="Shell Sort")
+        plt.plot(x, timing[3], label="Heap Sort")
+        plt.plot(x, timing[4], label="Merge Sort")
+        plt.plot(x, timing[5], label="Selection Sort")
+        plt.plot(x, timing[6], label="Python Sort")
+        plt.legend()
+        plt.xscale('log')
+        plt.yscale('log')
+        plt.title('log')
         plt.ylabel('Timing')
         plt.show()
