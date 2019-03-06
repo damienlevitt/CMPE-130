@@ -55,7 +55,13 @@ class BST:
             self.insertNode(self.root, val)
 
     def insertNode(self, current, val):
-        
+        if self.root is None:
+            self.init_bst(val)
+        else:
+            if BST_Node(current) > BST_Node(val):
+                BST_Node.right = BST_Node(val)
+            else:
+                BST_Node.left = BST_Node(val)
         return False
 
     def bsearch(self, val):
