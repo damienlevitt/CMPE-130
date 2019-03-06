@@ -20,8 +20,18 @@ class Array_Search:
         return False
 
     def bsearch(self, val):
-
-        return False
+        list.sort(self.array)
+        low = 0
+        high = len(self.array) - 1
+        while low <= high:
+            mid = low + ((high - low)//2)
+            if self.array[mid] > val:
+                high = mid - 1
+            elif self.array[mid] < val:
+                low = mid + 1
+            else:
+                return mid      #found
+        return False            #not found
 
 
 class BST_Node:
@@ -39,13 +49,13 @@ class BST:
         self.root = BST_Node(val)
 
     def insert(self, val):
-        if (self.root is None):
+        if self.root is None:
             self.init_bst(val)
         else:
             self.insertNode(self.root, val)
 
     def insertNode(self, current, val):
-
+        
         return False
 
     def bsearch(self, val):
