@@ -11,7 +11,6 @@ class Array_Search:
         self.array = Array_Search(val_array)
 
     def squential_search(self, key):
-
         idx = 0
         for num in self.array:
             if num == key:
@@ -40,6 +39,38 @@ class BST_Node:
         self.left = None
         self.right = None
 
+    def insert(self, data):
+        if self.val == data:
+            return False
+        elif self.val < data:
+            if self.right:
+                return self.right.insert(data)
+            else:
+                self.right = BST_Node(data)
+                return True
+        else:
+            if self.left:
+                return self.left.insert(data)
+            else:
+                self.left = BST_Node(data)
+                return True
+
+    def find(self, data):
+        if self.val == data:
+            return True
+        elif self.val > data:
+            if self.left:
+                return self.left.find(data)
+            else:
+                return False
+        else:
+            if self.right:
+                return self.left.find(data)
+            else:
+                return False
+
+
+
 
 class BST:
     def __init__(self):
@@ -52,29 +83,25 @@ class BST:
         if self.root is None:
             self.init_bst(val)
         else:
-            self.insertNode(self.root, val)
+            self.insert(self.root, val)
 
     def insertNode(self, current, val):
-        if self.root is None:
-            self.init_bst(val)
-        else:
-            if BST_Node(current) > BST_Node(val):
-                BST_Node.right = BST_Node(val)
-            else:
-                BST_Node.left = BST_Node(val)
+
         return False
 
     def bsearch(self, val):
-
-
-        return False
+        if self.root:
+            return self.root.find(val)
+        else:
+            return False
 
     def searchNode(self, current, val):
 
         return False
 
     def delete(self, val):
-
+        if self.root is None:
+            return self.root
         return False
 
 
