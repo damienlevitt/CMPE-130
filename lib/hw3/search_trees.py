@@ -38,37 +38,7 @@ class BST_Node:
         self.val = val
         self.left = None
         self.right = None
-
-    def insert(self, data):
-        if self.val == data:
-            return False
-        elif self.val < data:
-            if self.right:
-                return self.right.insert(data)
-            else:
-                self.right = BST_Node(data)
-                return True
-        else:
-            if self.left:
-                return self.left.insert(data)
-            else:
-                self.left = BST_Node(data)
-                return True
-
-    def find(self, data):
-        if self.val == data:
-            return True
-        elif self.val > data:
-            if self.left:
-                return self.left.find(data)
-            else:
-                return False
-        else:
-            if self.right:
-                return self.left.find(data)
-            else:
-                return False
-
+        self.parent = None
 
 
 
@@ -89,11 +59,13 @@ class BST:
         if current.val > val:
             if current.left is None:
                 current.left = BST_Node(val)
+                current.left.parent = current
             else:
                 self.insertNode(current.left, val)
         if val > current.val:
             if current.right is None:
                 current.right = BST_Node(val)
+                current.right.parent = current
             else:
                 self.insertNode(current.right, val)
         return False
@@ -113,24 +85,82 @@ class BST:
             return self.searchNode(current.right, val)
         return False
 
-    def delete(self, val):
-        if self.root is None:
-            return self.root
-        if val < self.root.val:
-            self.root.left = self.delete(val)
-        elif val > self.root.val:
-            self.root.right = self.delete(val)
+    def find(self, val):
+        if self.root is not None:
+            return self.findNode(self.root, val)
         else:
-            if self.root.left is None:
-                temp = self.root.right
-                self.root = None
-                return temp
-            elif self.root.right is None:
-                temp = self.root.left
-                self.root = None
-                return temp
+            return None
 
-        return self.root
+    def findNode(self, current, val):
+        if val == current.val:
+            return current
+        elif val < current.val and current.left is not None:
+            return self.findNode(current.left, val)
+        elif val > current.val and current.right is not None:
+            return self.findNode(current.right, val)
+
+    def delete(self, val):
+        return self.deleteNode(self.find(val))
+
+    def deleteNode(self, node):
+
+        # returns the node with the min value in the tree rooted at input node
+        def min_val_node(n):
+            current = n
+            while current.left is not None:
+                current = current.left
+            return current
+        # returns the num of children for a node
+        def num_children(n):
+            num_children = 0
+            if n.left is not None:
+                num_children += 1
+            if n.right is not None:
+                num_children += 1
+            return num_children
+
+        node_parent = node.parent
+        node_children = num_children(node)
+
+        # First case where the node does not have any children
+        if node_children == 0:
+            if node_parent.left == node:
+                node_parent.left = None
+            else:
+                node_parent.right = None
+
+        # Second case where the node has one child
+        if node_children == 1:
+
+            # finds the child node
+            if node.left is not None:
+                child = node.left
+            else:
+                child = node.right
+
+            # replaces the node being deleted with its child
+            if node_parent.left == node:
+                node_parent.left = child
+            else:
+                node_parent.right = child
+
+            # corrects the parent pointer
+            child.parent = node_parent
+
+        # Third case where the node has two children
+        if node_children == 2:
+
+            # the successor(in order) to the node being deleted
+            next = min_val_node(node.right)
+
+            # replaces value of the node being deleted with the successor's val
+            node.val = next.val
+
+            # deletes the successor node now that the value was copied
+            self.deleteNode(next)
+
+
+
 
 
 class RBBST_Node:
