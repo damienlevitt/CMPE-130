@@ -198,8 +198,16 @@ class RBBST:
             return False
 
     def rotate_right(self, current):
-
-        return False
+        if self.root is not None:
+            self.is_red(current.left)
+            temp = current.left
+            current.left = temp.right
+            temp.right = current
+            temp.color = current.color
+            current.color = RED
+            return temp
+        else:
+            return False
 
     def flip_colors(self, current):
 
