@@ -160,9 +160,6 @@ class BST:
             self.deleteNode(next)
 
 
-
-
-
 class RBBST_Node:
     def __init__(self, val, color):
         self.val = val
@@ -183,16 +180,22 @@ class RBBST:
         self.root = RBBST_Node(val, color)
 
     def is_red(self, current):
-
-
-
-        return False
+        if current is not None:
+            return current.color
+        else:
+            return False
 
     def rotate_left(self, current):
-
-
-
-        return False
+        if self.root is not None:
+            self.is_red(current.right)
+            temp = current.right
+            current.right = temp.left
+            temp.left = current
+            temp.color = current.color
+            current.color = RED
+            return temp
+        else:
+            return False
 
     def rotate_right(self, current):
 
