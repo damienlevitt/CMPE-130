@@ -210,8 +210,12 @@ class RBBST:
             return False
 
     def flip_colors(self, current):
-
-        return False
+        if self.is_red(current) is False and self.is_red(current.left) is True and self.is_red(current) is True:
+            current.color = RED
+            current.left.color = BLACK
+            current.right.color = BLACK
+        else:
+            return False
 
     def insert(self, val):
         if (self.root is None):
