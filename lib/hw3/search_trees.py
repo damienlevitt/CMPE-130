@@ -239,7 +239,8 @@ class RBBST:
             return False
 
     def searchNode(self, current, val):
-
+        while current is not None:
+            return RBBST_Node(val, RED)
         return False
 
 if __name__ == "__main__":
