@@ -53,7 +53,7 @@ class BST:
         if self.root is None:
             self.init_bst(val)
         else:
-            self.insert(self.root.val)
+            self.insertNode(self.root, val)
 
     def insertNode(self, current, val):
         if current.val > val:
@@ -224,6 +224,8 @@ class RBBST:
             self.insertNode(self.root, val)
 
     def insertNode(self, current, val):
+        if current is None:
+            return self.insertNode(val, RED)
 
 
 
@@ -231,8 +233,10 @@ class RBBST:
         return False
 
     def bsearch(self, val):
-
-        return False
+        if self.root is not None:
+            return self.searchNode(self.root, val)
+        else:
+            return False
 
     def searchNode(self, current, val):
 
