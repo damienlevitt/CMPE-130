@@ -218,14 +218,17 @@ class RBBST:
             return False
 
     def insert(self, val):
-        if (self.root is None):
+        if self.root is None:
             self.init_rbbst(val, RED)
         else:
             self.insertNode(self.root, val)
 
     def insertNode(self, current, val):
         if current is None:
-            return self.insertNode(val, RED)
+            return RBBST_Node(val, RED)
+        diff = current.val - current.key
+        if diff < 0:
+            current.left = self.insertNode(current.left, )
 
 
 
