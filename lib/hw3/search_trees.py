@@ -181,13 +181,12 @@ class RBBST:
 
     def is_red(self, current):
         if current is not None:
-            return current.color
+            return current.color == RED
         else:
             return False
 
     def rotate_left(self, current):
-        if self.root is not None:
-            self.is_red(current.right)
+        if self.root is not None and self.is_red(current.right):
             temp = current.right
             current.right = temp.left
             temp.left = current
@@ -198,8 +197,7 @@ class RBBST:
             return False
 
     def rotate_right(self, current):
-        if self.root is not None:
-            self.is_red(current.left)
+        if self.root is not None and self.is_red(current.left):
             temp = current.left
             current.left = temp.right
             temp.right = current
@@ -226,14 +224,18 @@ class RBBST:
     def insertNode(self, current, val):
         if current is None:
             return RBBST_Node(val, RED)
-        diff = current.val - val
-        if diff < 0:
+        if val < current.val:
             current.left = self.insertNode(current.left, val)
-        elif diff > 0:
+        elif val > current.val:
             current.right = self.insertNode(current.right, val)
         else:
             current.val = val
-        return current
+        if self.is_red(current.right) and self.is_red(current.left) is False:
+            current = self.rotate_left(current)
+        if self.is_red(current.left) and self.is_red(current.left.left):
+            current = self.rotate_right(current)
+        if self.is_red(current.left) and self.is_red(current.right):
+            self.flip_colors(current)
 
     def bsearch(self, val):
         if self.root is not None:
@@ -243,10 +245,9 @@ class RBBST:
 
     def searchNode(self, current, val):
         while current is not None:
-            diff = current.val - val
-            if diff < 0:
+            if val < current.val:
                 return self.searchNode(current.left, val)
-            elif diff > 0:
+            elif val > current.val:
                 return self.searchNode(current.right, val)
             else:
                 return current.val
