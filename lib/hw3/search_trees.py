@@ -226,14 +226,14 @@ class RBBST:
     def insertNode(self, current, val):
         if current is None:
             return RBBST_Node(val, RED)
-        diff = current.val - current.key
+        diff = current.val - val
         if diff < 0:
-            current.left = self.insertNode(current.left, )
-
-
-
-
-        return False
+            current.left = self.insertNode(current.left, val)
+        elif diff > 0:
+            current.right = self.insertNode(current.right, val)
+        else:
+            current.val = val
+        return current
 
     def bsearch(self, val):
         if self.root is not None:
@@ -243,7 +243,13 @@ class RBBST:
 
     def searchNode(self, current, val):
         while current is not None:
-            return RBBST_Node(val, RED)
+            diff = current.val - val
+            if diff < 0:
+                return self.searchNode(current.left, val)
+            elif diff > 0:
+                return self.searchNode(current.right, val)
+            else:
+                return current.val
         return False
 
 if __name__ == "__main__":
