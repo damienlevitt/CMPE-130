@@ -110,6 +110,7 @@ class BST:
             while current.left is not None:
                 current = current.left
             return current
+
         # returns the num of children for a node
         def num_children(n):
             num_children = 0
@@ -186,34 +187,25 @@ class RBBST:
             return False
 
     def rotate_left(self, current):
-        if self.root is not None and self.is_red(current.right):
-            temp = current.right
-            current.right = temp.left
-            temp.left = current
-            temp.color = current.color
-            current.color = RED
-            return temp
-        else:
-            return False
+        temp = current.right
+        current.right = temp.left
+        temp.left = current
+        temp.color = current.color
+        current.color = RED
+        return temp
 
     def rotate_right(self, current):
-        if self.root is not None and self.is_red(current.left):
-            temp = current.left
-            current.left = temp.right
-            temp.right = current
-            temp.color = current.color
-            current.color = RED
-            return temp
-        else:
-            return False
+        temp = current.left
+        current.left = temp.right
+        temp.right = current
+        temp.color = current.color
+        current.color = RED
+        return temp
 
     def flip_colors(self, current):
-        if self.is_red(current) is False and self.is_red(current.left) is True and self.is_red(current) is True:
-            current.color = RED
-            current.left.color = BLACK
-            current.right.color = BLACK
-        else:
-            return False
+        current.color = RED
+        current.left.color = BLACK
+        current.right.color = BLACK
 
     def insert(self, val):
         if self.root is None:
@@ -251,7 +243,6 @@ class RBBST:
                 return self.searchNode(current.right, val)
             else:
                 return current.val
-        return False
 
 if __name__ == "__main__":
 

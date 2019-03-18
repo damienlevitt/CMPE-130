@@ -52,7 +52,7 @@ class Test_Search(object):
 
         actual = op_under_test.bsearch(key)
 
-        #assert expected == actual
+        assert expected == actual
 
         # initialize testbed
         op_under_test = BST()
