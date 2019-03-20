@@ -209,7 +209,7 @@ class RBBST:
 
     def insert(self, val):
         if self.root is None:
-            self.init_rbbst(val, RED)
+            self.init_rbbst(val, BLACK)
         else:
             self.insertNode(self.root, val)
 
@@ -228,6 +228,7 @@ class RBBST:
             current = self.rotate_right(current)
         if self.is_red(current.left) and self.is_red(current.right):
             self.flip_colors(current)
+        return current
 
     def bsearch(self, val):
         if self.root is not None:

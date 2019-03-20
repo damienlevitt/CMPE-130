@@ -48,7 +48,7 @@ class Test_Search(object):
 
         # python search result
         key = vals[9]
-        expected = vals.index(key)
+        expected = vals[9]
 
         actual = op_under_test.bsearch(key)
 
