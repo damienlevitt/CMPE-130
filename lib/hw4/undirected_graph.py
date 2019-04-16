@@ -12,11 +12,17 @@ class Vertex:
                 neighbor.neighbors = sorted(neighbor.neighbors)
         else:
             return 1
-
         
     def add_neighbors(self, neighbors):
-        
-        return 1
+        for neighbor in neighbors:
+            if isinstance(neighbor, Vertex):
+                if neighbor.name not in self.neighbors:
+                    self.neighbors.append(neighbor.name)
+                    neighbor.neighbors.append(self.name)
+                    self.neighbors = sorted(self.neighbors)
+                    neighbor.neighbors = sorted(neighbor.neighbors)
+        else:
+            return 1
         
     def __repr__(self):
         return str(self.neighbors)
