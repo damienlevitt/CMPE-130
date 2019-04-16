@@ -32,13 +32,17 @@ class Graph:
         self.vertices = {}
     
     def add_vertex(self, vertex):
-        
-        return 1
+        if isinstance(vertex, Vertex):
+            self.vertices[vertex.name] = vertex.neighbors
+        else:
+            return 1
 
-            
     def add_vertices(self, vertices):
-        
-        return 1 
+        for vertex in vertices:
+            if isinstance(vertex, Vertex):
+                self.vertices[vertex.name] = vertex.neighbors
+        else:
+            return 1
             
     def add_edge(self, vertex_from, vertex_to):
         
