@@ -45,7 +45,7 @@ class Sorting(object):
         similar insertion sort
 
         """
-        for i_idx, i_item in enumerate(self.id):
+        for i_idx in enumerate(self.id):
             min = i_idx
 
             for j_idx in range(i_idx+1, len(self.id)):

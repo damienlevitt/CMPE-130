@@ -97,4 +97,3 @@ class Test_UF(object):
 
         assert expected == actual
 
-
