@@ -27,6 +27,7 @@ class Vertex:
     def __repr__(self):
         return str(self.neighbors)
 
+
 class Graph:
     def __init__(self):
         self.vertices = {}

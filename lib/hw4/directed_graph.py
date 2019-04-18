@@ -8,12 +8,12 @@ class Digraph:
 
     def add_node(self, node):
         """adds vertices to your graph"""
+        if node not in self.nodes:
+            self.nodes[node] = []
 
-        return 1
     def add_edge(self, last, first):
         """creates edges between two given vertices in your graph"""
-        
-        return 1
+        set(last).add(first)
 
     def has_edge(self, first, last):   
         """checks if a connection exists between two given nodes in your graph"""
