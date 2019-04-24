@@ -19,17 +19,17 @@ class Graph:
         # A function that unions sets x and y
 
     def union(self, parent, rank, x, y):
-        xroot = self.find(parent, x)
-        yroot = self.find(parent, y)
+        root1 = self.find(parent, x)
+        root2 = self.find(parent, y)
 
-        if rank[xroot] < rank[yroot]:
-            parent[xroot] = yroot
-        elif rank[xroot] > rank[yroot]:
-            parent[yroot] = xroot
+        if rank[root1] < rank[root2]:
+            parent[root1] = root2
+        elif rank[root1] > rank[root2]:
+            parent[root2] = root1
 
         else:
-            parent[yroot] = xroot
-            rank[xroot] += 1
+            parent[root2] = root1
+            rank[root1] += 1
 
 
     def KruskalMST(self):
@@ -55,5 +55,3 @@ class Graph:
                 z = z + 1
                 mst.append([u, v, w])
                 self.union(parent, rank, x, y)
-
-        return 1
