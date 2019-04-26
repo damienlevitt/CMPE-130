@@ -21,8 +21,7 @@ class Graph:
 
     def bfs(self, v):
         visited = [False] * len(self.graph)
-        queue = []
-        queue.append(v)
+        queue = [v]
         visited[v] = True
         while queue:
             v = queue.pop(0)
