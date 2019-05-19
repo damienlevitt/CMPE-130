@@ -3,10 +3,10 @@ from collections import defaultdict
 
 class Graph: 
   
-    def __init__(self,vertices): 
-        self.V= vertices  # No. of vertices
-        self.graph = [] # default dictionary
-                        # to store graph
+    def __init__(self, vertices):
+        self.V = vertices  # No. of vertices
+        self.graph = []  # default dictionary
+                         # to store graph
 
     def addEdge(self, u, v, w):
         self.graph.append([u, v, w])
@@ -30,7 +30,6 @@ class Graph:
         else:
             parent[root2] = root1
             rank[root1] += 1
-
 
     def KruskalMST(self):
         mst = []

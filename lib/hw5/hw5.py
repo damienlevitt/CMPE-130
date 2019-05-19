@@ -1,7 +1,19 @@
+import sys
+
 class Graph:
-    def __init__(self):
-        self.nodes = set()
-        self.edges = dict()
+    def __init__(self, verticies):
+        self.V = verticies
+        self.graph = [[0  for column in range(verticies)]
+                      for row in range(verticies)]
+
+    def min_dist(self, dist, sptSet):
+        min = sys.maxint
+        for v in range(self.V):
+            if dist[v] < min and sptSet[v] == False:
+                min = dist[v]
+                min_index = v
+
+        return min_index
 
     def add_node(self, node):
         self.nodes.add(node)
@@ -25,6 +37,7 @@ class Edge:
         self.length = length
 
 def dijkstra(graph, source):
+    dist = [sys.maxint] * sele
     
     return 1
 
